@@ -28,6 +28,8 @@ public class IPCategories {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
+		
+		//Reading the map of person names and the list of news articles in which they occur
 		File toRead=new File("FinalOutput/PersonDocList");
         FileInputStream fis=new FileInputStream(toRead);
         ObjectInputStream ois=new ObjectInputStream(fis);
@@ -59,14 +61,17 @@ public class IPCategories {
      //   System.out.println(MapMedium.size());
        // System.out.println(MapLarge.size());
       
-        
+        //Reading the list containing document id and the topic id associated with each document
     	File toRead2=new File("FinalOutput/DocTopicList");
         FileInputStream fis2=new FileInputStream(toRead2);
         ObjectInputStream ois2=new ObjectInputStream(fis2);
 
+        
         HashMap<String,Integer> mapInFile2=(HashMap<String,Integer>)ois2.readObject();
         ois2.close();
         fis2.close();
+        
+        //Read Person name , corresponding list of article and their topics to find number of unique topics in which a person occurs
         HashMap<String,Float> PersonUniqTopics=new HashMap<String,Float>();
         for(Map.Entry<String,List<String>> m :mapInFile.entrySet()){
         	String p=m.getKey();
@@ -148,7 +153,9 @@ public class IPCategories {
 	//System.out.println(mapInFile3);
 	float UniqT=PersonUniqTopics.get(person);
 //	System.out.println(totlen);
+
 	//Start calculating DI for every document in a person's list
+	//First calculating the paarameter NSIM for each person's list of articles
 	for(int i=0;i<persondocs.size();i++)
        {
     	   double Index=0;

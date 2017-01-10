@@ -100,7 +100,11 @@ public class NERCoref {
 		  
 		  ArrayList <String> Documents= new ArrayList <String>();
 		NERCoref obj=new NERCoref();
-		Documents=obj.traverseFiles(folder,Documents);
+		
+		
+		
+		
+		Documents=obj.traverseFiles(folder,Documents); 
 		 System.out.println(Documents.size());
 	//	BufferedWriter outp = new BufferedWriter(new FileWriter("NER/OutputofNERFinal.txt"));
 		//File[] listOfFiles = null;
@@ -304,7 +308,7 @@ public class NERCoref {
 		output.close();
 */
 		//READING THE MAP OF TF VALUES CREATED FROM NER HERE
-        File fileX=new File("Topic100FinalOutput/PersonTFValuesNER1709");
+        File fileX=new File("FinalOutput2310/PersonTFValuesNER");
         FileInputStream fisx=new FileInputStream(fileX);
         ObjectInputStream oisx=new ObjectInputStream(fisx);
 
@@ -326,8 +330,9 @@ System.out.println("This is COREF MAP"+MyMap.size());
 					{
 						NewMap.put(person.trim(),MyMap.get(person));
 				
-				//	int nfreq=MyMap.get(person);
-		//System.out.println(MyMap.get(person));
+				//	HashMap <String,Integer> SmallMap=MyMap.get(person);
+		//for every entry in small map of NER , get the correcponsding freq from SmallMap and if it higher, replace otherwise keep it
+						//System.out.println(MyMap.get(person));
 		//NewMap.put(person,nfreq);
 		}
 			else
@@ -437,7 +442,7 @@ System.out.println("This is COREF MAP"+MyMap.size());
 	   */ 	        
 	    	      //Code for writing TF Map to disk
 	    			System.out.println("Writing TFScore map");
-	    		        File fileL=new File("Topic100FinalOutput/PersonTFValues1709");
+	    		        File fileL=new File("PersonTFValues2310");
 	    	  	    FileOutputStream fosL=new FileOutputStream(fileL);
 	    	  	        ObjectOutputStream oosL=new ObjectOutputStream(fosL);
 	    	  	        oosL.writeObject(NewMap);

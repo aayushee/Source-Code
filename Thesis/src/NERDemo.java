@@ -419,7 +419,7 @@ public class NERDemo {
 	    	 }
 		
 	      System.out.println("Writing person doc map");
-	    	  File fileO=new File("Topic100FinalOutput/PersonDocList1709");
+	    	  File fileO=new File("FinalOutput2310/PersonDocList");
 	  	    FileOutputStream fos0=new FileOutputStream(fileO);
 	  	        ObjectOutputStream oos0=new ObjectOutputStream(fos0);
 	  	        oos0.writeObject(hm);
@@ -487,7 +487,7 @@ public class NERDemo {
 	    	        
 	    	      //Code for writing TF Map to disk
 	    			System.out.println("Writing TFScore map");
-	    		        File fileL=new File("Topic100FinalOutput/PersonTFValuesNER1709");
+	    		        File fileL=new File("FinalOutput2310/PersonTFValuesNER");
 	    	  	    FileOutputStream fosL=new FileOutputStream(fileL);
 	    	  	        ObjectOutputStream oosL=new ObjectOutputStream(fosL);
 	    	  	        oosL.writeObject(PersonTFMap);

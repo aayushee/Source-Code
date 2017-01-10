@@ -245,7 +245,7 @@ int count=0;
 
 	
 	//Code to create NTF MAP FOR EACH DOCUMENT
-
+/*
 	File toRead2=new File("Topic100FinalOutput/PersonTFValues");
     FileInputStream fis2=new FileInputStream(toRead2);
     ObjectInputStream ois2=new ObjectInputStream(fis2);
@@ -306,6 +306,8 @@ int count=0;
 
     ois.close();
     fis.close();
+
+ */
  /*   
     HashMap<String,List<String>> MapSmall= new HashMap<String,List<String>>();
     HashMap<String,List<String>> MapMedium=new HashMap<String,List<String>>();
@@ -360,7 +362,7 @@ System.out.println(MaxDocLength+"=18053 ");
 System.out.println(DocLengths);
 */
   //Code to get max length of all docs in a person's list 
-  HashMap<String,Integer> MapL=new HashMap<String,Integer>();
+ /* HashMap<String,Integer> MapL=new HashMap<String,Integer>();
   DocumentSimilarity ob=new DocumentSimilarity();
   ArrayList<String> Documents2=new ArrayList<String>(); 
 	File folder=new File("C:/Users/AAYUSHEE/Documents/final");
@@ -391,4 +393,119 @@ FileOutputStream fos1=new FileOutputStream(file1);
     oos1.flush();
     oos1.close();
     fos1.close();
+    */
+  
+  
+  
+  //Code to find Max PNF across all persons
+  
+  
+  /*File toRead2=new File("FinalOutput2310/PersonTFValues2310");
+  FileInputStream fis2=new FileInputStream(toRead2);
+  ObjectInputStream ois2=new ObjectInputStream(fis2);
+
+  HashMap<String,HashMap<String,Integer>> mapInFile2=(HashMap<String,HashMap<String,Integer>>)ois2.readObject();
+  ois2.close();
+  fis2.close();
+	System.out.println(mapInFile2.size());
+  
+	List<Integer> FreqList=new ArrayList<Integer>();
+	for(Map.Entry<String,HashMap<String,Integer>> entry1 :mapInFile2.entrySet()){
+  	
+		HashMap<String,Integer> Map2=entry1.getValue();
+  	ArrayList<Integer> l1= new ArrayList<Integer>();
+  	l1.addAll(Map2.values());
+  	Collections.sort(l1);
+  	FreqList.add(l1.get(l1.size()-1));
+
+  }
+	
+	Collections.sort(FreqList);
+	//System.out.println(FreqList);
+	System.out.println("Max frequency across all documents for any person is:"+ FreqList.get(FreqList.size()-1));
+	*/
+	
+	File fileX=new File("FinalOutput2310/PersonTFValuesNER");
+    FileInputStream fisx=new FileInputStream(fileX);
+    ObjectInputStream oisx=new ObjectInputStream(fisx);
+
+    HashMap<String,HashMap<String, Integer>> PersonTFMap=(HashMap<String,HashMap<String, Integer>>)oisx.readObject();
+ //   System.out.println(DocTopicMap);
+    oisx.close();
+    fisx.close();
+    
+  //System.out.println(PersonTFMap.get("mrs kimball"));
+    
+	//READING THE MAP OF TF VALUES CREATED FROM NER HERE
+  File fileX2=new File("FinalOutput2310/PersonTFValues2310");
+  FileInputStream fisx2=new FileInputStream(fileX2);
+  ObjectInputStream oisx2=new ObjectInputStream(fisx2);
+
+  HashMap<String,HashMap<String, Integer>> MyMap=(HashMap<String,HashMap<String, Integer>>)oisx2.readObject();
+//   System.out.println(DocTopicMap);
+  oisx2.close();
+  fisx2.close();
+
+	
+	HashMap<String,HashMap<String,Integer>>NewMap=new HashMap<String,HashMap<String,Integer>>();
+System.out.println("This is COREF MAP"+MyMap.size());
+
+System.out.println("This is NER MAP"+PersonTFMap.size());
+	for (Map.Entry<String,HashMap<String, Integer>> entry : PersonTFMap.entrySet()) {	
+
+	String person=entry.getKey();
+	HashMap <String,Integer> values=entry.getValue();
+	HashMap <String,Integer> SmallMap=new HashMap<String,Integer>();
+
+//System.out.println("Trying to search for " +person+"	"+MyMap.containsKey(person.trim()));
+		if(MyMap.containsKey(person.trim()))
+				{
+					
+			for(Map.Entry<String, Integer> entry2: values.entrySet())
+			{
+				String doc=entry2.getKey();
+				
+				if(MyMap.get(person.trim()).containsKey(doc))
+				{
+
+				if( entry2.getValue()<MyMap.get(person.trim()).get(doc) )
+				{
+			//NewMap.put(person.trim(),MyMap.get(person));
+					int freq=MyMap.get(person.trim()).get(doc);
+				SmallMap.put(doc,freq);
+				
+				}
+				else{
+				int freq=MyMap.get(person.trim()).get(doc);
+				SmallMap.put(doc,freq);}
+				}
+				else
+					SmallMap.put(doc,entry2.getValue());
+			
+				
+				NewMap.put(person.trim(),SmallMap);
+	
+			}
+				}
+		else
+		NewMap.put(person.trim(),PersonTFMap.get(person));
+		
+		}
+	
+	
+	String persons[]={"jefferson ingram","mrs darner","capt creeten","john wilson","alexander iii","george apro","itrerkiti nashua","john martin","thomas jefferson","aaron trow","capt williams","lillian russell","caleb morton","john doe","catherine ii","john dull","mrs herrmann","father ducey","m delabordeau","capt pinckney","john w","karl marie clavero","tim ion","john ii","mrs kendal","henry worley","tom wright","marie clavero","jesus christ","william i","mrs cleveland","mrs damer","conan doyle","ann arbor","lyman abbott","john j","john jacob astor","godfrey holmes","frank id","roel iliff","patty coverdale","george gould","elizabeth car","lisa j","elltalwlh harrow","otto knglmiman","daniel frohman","anil jr","carl werner"};
+	for (String person: persons)
+	{
+		
+	}
+	 //Code for writing TF Map to disk
+/*	System.out.println("Writing TFScore map");
+        File fileL=new File("FinalOutput2310/PersonTFValues0111");
+	    FileOutputStream fosL=new FileOutputStream(fileL);
+	        ObjectOutputStream oosL=new ObjectOutputStream(fosL);
+	        oosL.writeObject(NewMap);
+	        oosL.flush();
+	        oosL.close();
+	        fosL.close(); */
+    
 }}
