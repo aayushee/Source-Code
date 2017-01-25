@@ -5,9 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 
 public class Borda {
@@ -67,11 +72,13 @@ public class Borda {
         ois.close();
         fis.close();
 
-		
-		File f4=new File("FinalOutput2310/BordaScore3.csv");
+        Map<String, Double> sortedMap = NERDemo.RankScores(BordaScore);
+      
+        
+		File f4=new File("FinalOutput2310/BordaScore4.csv");
 	        BufferedWriter bw4=new BufferedWriter(new FileWriter(f4));
 	        int i=0;
-	        for(Map.Entry<String,Double> m1:BordaScore.entrySet()){
+	        for(Map.Entry<String,Double> m1:sortedMap.entrySet()){
 	        	
 	        	String person=m1.getKey();
 	        	List<String> docs=mapInFile.get(person);
@@ -84,5 +91,7 @@ public class Borda {
 	        
 	        
 	}
+	
+	
 
 }

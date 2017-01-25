@@ -87,7 +87,7 @@ class Spelling1 {
 		File folder=new File("C:\\Users\\AAYUSHEE\\Pictures\\ANNOTATION\\OCR300");
 		//	File folder=new File ("C:\\Users\\AAYUSHEE\\Documents\\OCR ARTICLES");	//INPUT THE DIRECTORY CONTAINING ALL ARTICLES
 	   File[] listOfFiles=folder.listFiles();   //LIST AND COMPARE THE FILES ACCORDING TO LAST DATE MODIFIED SO THAT NUMBERING OF FILES IS PRESERVED
-	  Spelling1 obj=new Spelling1("Finaldict.txt");
+	  Spelling1 obj=new Spelling1("Finaldict.txt"); //INPUT THE DICTIONARY HERE
 	   
 	    for (int i = 0; i < listOfFiles.length; i++) 
 	{
@@ -115,7 +115,7 @@ class Spelling1 {
 						{WordsCorrected=WordsCorrected+1;
 			//	System.out.println(split[j]+" corrected to "+corrected);
 						}
-				writer1.write(corrected + " ");  //INPUT THE DICTIONARY BIG.TXT HERE				
+				writer1.write(corrected + " ");  				
 				}
 				writer1.newLine();	
 				writer1.flush();

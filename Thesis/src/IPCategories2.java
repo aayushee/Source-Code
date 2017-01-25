@@ -17,7 +17,7 @@ public class IPCategories2 {
 
 
 	/**
-	 * This class finds the parameter values NSIM, NPNF AND NDL
+	 * This class finds the parameter values NSIM, NPNF AND NDL for all persons and saves them as individual lists
 	 * @param args
 	 * @throws Exception 
 	 */
@@ -26,7 +26,7 @@ public class IPCategories2 {
 	public void KLdiv() throws Exception
 	{
 		//Code to write KL Divergence values for all documents to disk and 	
-	File fileF=new File("FinalOutput/KLDivList.txt"); //Change the file name based on topic modelbegin considered
+	File fileF=new File("FinalOutput/KLDivList.txt"); //Change the file name based on topic model being considered
 		BufferedWriter writer1 = new BufferedWriter(new FileWriter(fileF));
         File toRead4=new File("FinalOutput/DocTopicProbList2");
         FileInputStream fis4=new FileInputStream(toRead4);
